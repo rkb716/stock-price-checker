@@ -1,14 +1,5 @@
-/*
-*
-*
-*       Complete the API routing below
-*
-*
-*/
-
 'use strict';
 
-var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var fetchJson = require('fetch-json');
@@ -27,6 +18,7 @@ module.exports = function (app) {
   //In stockData, I can see the stock(string, the ticker), price(decimal in string format), and likes(int).
   app.route('/api/stock-prices')
     .get(function (req, res) {
+      console.log("Get registered for stock: " + req.query.stock);
       let stocks = req.query.stock;
       let like = req.query.like;
       let stockData = [];

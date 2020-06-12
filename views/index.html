@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Stock Price Checker</title>
-    <meta name="description" content="Obtain real-time stock price data">
+    <meta name="description" content="Obtain stock price data">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,24 +43,30 @@
       <code id="jsonResult"></code>
     </div>
     <hr style="margin: 50px; margin-top: 200px">
-    <!-- Your web-app is https, so your scripts need to be too -->
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"
             integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
             crossorigin="anonymous"></script>
-    <script>
-      $(function() {
+    <script type="text/javascript">
+      $(document).ready($(function() {
+        console.log("check");
+        
         $('#testForm').submit(function(e) {
+          console.log("Test form 1 submitted");
           $.ajax({
             url: '/api/stock-prices',
             type: 'get',
             data: $('#testForm').serialize(),
             success: function(data) {
+              console.log("success");
+              console.log(data);
               $('#jsonResult').text(JSON.stringify(data));
             }
           });
           e.preventDefault();
         });
+        
         $('#testForm2').submit(function(e) {
+          console.log("Test form 2 submitted");
           $.ajax({
             url: '/api/stock-prices',
             type: 'get',
@@ -71,7 +77,8 @@
           });
           e.preventDefault();
         });
-      });
+        
+      }));
    </script>
   </body>
 </html>

@@ -18,12 +18,8 @@ app.use('/public', express.static(process.cwd() + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'self'"],
-    styleSrc: ["'self'"]
-  }
-}));
+app.use(helmet.noSniff());
+app.use(helmet.xssFilter());
 
 //Index page (static HTML)
 app.route('/')
